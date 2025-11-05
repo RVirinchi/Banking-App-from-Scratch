@@ -20,7 +20,3 @@ if __name__ == '__main__':
 
     # call test
     test_user_registration(username, password)
-
-
-
-
