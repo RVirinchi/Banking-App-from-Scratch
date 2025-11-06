@@ -8,10 +8,8 @@ sys.path.append(bank)
 from features import authorisation
 
 def test_user_registration(username, password):
-    if authorisation.user_registration(username, password):
-        print("new user registration test passed")
-    else:
-        print("new user registration test failed")
+    flag, message = authorisation.user_registration(username, password)
+    print(message)
 
 if __name__ == '__main__':
     # enter username and password
