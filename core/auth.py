@@ -37,3 +37,5 @@ class auth:
         # if password matches, make new obj and return it
         if user._hash_password(password) == user_row['password_hash']:
             return user(username, password, user_row['name'], user_row['email'])
+        else:
+            return False
