@@ -10,7 +10,8 @@ class user:
         self.name = name
         self.email = email
 
-    def _hash_password(self, password):
+    @classmethod
+    def _hash_password(cls, password):
         return hl.sha256(password.encode('utf-8')).hexdigest()
     
     def verify_password(self, password):
