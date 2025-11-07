@@ -36,7 +36,7 @@ class account:
         return True
     
     def transfer(self, to_username, amount) -> bool:
-        if amount < '0' or int(amount) < int(self.balance):
+        if int(amount) < 0 or int(amount) > int(self.balance):
             return False
         self.balance = str(int(self.balance) - int(amount))
         # update balance of the the other account

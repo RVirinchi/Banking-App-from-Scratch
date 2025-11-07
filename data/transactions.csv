@@ -1,0 +1,6 @@
+from_username,to_username,amount,datetime
+paradox,paradox,100,
+paradox,paradox,-50,
+secondaccount,secondaccount,500,
+secondaccount,secondaccount,100,
+secondaccount,secondaccount,-300,
