@@ -17,8 +17,8 @@ def main():
 
     while(flag):   
         print("=============== WELCOME TO TRUSTUS BANK ===============")
-        print("choose: 1. Register\n2. Login\n3. Exit")
-        choice = input("choice")
+        print("choose: 1. Register 2. Login 3. Exit")
+        choice = input("choice: ")
 
         # do something based on the input given
         match choice:
@@ -58,7 +58,8 @@ def post_login(acc_obj: account):
     flag = True
     while(flag):
         print("what do u wish to do today?")
-        choice = input("1. Deposit\n2. Withdraw\n3. Transfer\n4. Exit")
+        print("1. Deposit 2. Withdraw 3. Transfer 4. Exit")
+        choice = input("Enter ur choice: ")
         match choice:
             case '1':
                 amount = input("How much do u wish to deposit?: ")
