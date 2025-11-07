@@ -12,26 +12,27 @@ class auth:
     def __init__(self):
         # create the csv if it doesnt already exist
         if not os.path.exists(self.FILE):
-            pd.DataFrame(columns=['username', 'password_hash', 'name', 'email']).to_csv(self.FILE, index = False)
+            pd.DataFrame(columns=['username', 'password_hash', 'name', 'mobile_no']).to_csv(self.FILE, index = False)
 
-    def register(self, username, password, name, email):
+    def register(self, username, password, name, mobile_no):
         df = pd.read_csv(self.FILE)
         # check if username exists
         if username in df['username'].values:
             return False
         
         # read the csv into df, append df, overwrite the csv
-        new_user = user(username, password, name, email)
-        df.loc[len(df)] = [new_user.username, new_user.password_hash, new_user.name, new_user.email]
+        new_user = user(username, password, name, mobile_no)
+        df.loc[len(df)] = [new_user.username, new_user.password_hash, new_user.name, new_user.mobile_no]
         df.to_csv(self.FILE, index = False)
 
         # create new account for the user in accounts
         acc_obj = account(username, username.encode('utf-8'))
+        acc_obj.save_account()
 
         # registration successful
         return True
     
-    def login(self,username, password):
+    def login(self, username, password):
         df = pd.read_csv(self.FILE)
         # check if username exists
         if username not in df['username'].values:
@@ -40,6 +41,6 @@ class auth:
         user_row = df[df['username'] == username].iloc[0]
         # if password matches, make new obj and return it
         if user._hash_password(password) == user_row['password_hash']:
-            return user(username, password, user_row['name'], user_row['email'])
+            return user(username, password, user_row['name'], user_row['mobile_no'])
         else:
             return False
