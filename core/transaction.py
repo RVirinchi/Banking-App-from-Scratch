@@ -31,5 +31,5 @@ class transaction:
             'from_username': self.from_username,
             'to_username': self.to_username,
             'amount': self.amount,
-            'date_time': self.datetime
+            'datetime': self.datetime
         }

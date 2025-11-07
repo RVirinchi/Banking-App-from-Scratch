@@ -27,7 +27,7 @@ def main():
 
     # create the required objects
     auth_obj = auth()
-   
+    print("") # just to add readability in terminal
     print("=============== WELCOME TO TRUSTUS BANK ===============")
     print("choose: 1. Register 2. Login 3. Exit")
     choice = input("choice: ")
@@ -56,7 +56,12 @@ def main():
                 global flag_login
                 flag_login = True
                 while(flag_login):
-                    post_login(account.load_account(username))
+                    acc_obj = account.load_account(username)
+                    if acc_obj is not None:
+                        post_login(acc_obj)
+                    else:
+                        flag_login = False
+                        print("Something went wrong")
             else:
                 print("Invalid credentials, try again")
 
@@ -69,19 +74,19 @@ def main():
 
 # post login function
 def post_login(acc_obj: account):
-    print("what do u wish to do today?")
+    print("\nwhat do u wish to do today?")
     print("1. Deposit 2. Withdraw 3. Transfer 4. View details 5. Exit")
     choice = input("Enter ur choice: ")
     match choice:
         case '1':
-            amount = input("How much do u wish to deposit?: ")
+            amount = int(input("How much do u wish to deposit?: "))
             if acc_obj.deposit(amount):
                 print("Deposit successful")
             else:
                 print("deposit failed, try again.")
         
         case '2':
-            amount = input("How much do u wish to withdraw?: ")
+            amount = int(input("How much do u wish to withdraw?: "))
             if acc_obj.withdraw(amount):
                 print("Witchdraw successful")
             else:
@@ -93,7 +98,7 @@ def post_login(acc_obj: account):
             if df[df['username'] == to_username].empty:
                 print("The username provided doesnt exist in our bank")
             else:
-                amount = input("How much do u want to transfer?: ")
+                amount = int(input("How much do u want to transfer?: "))
                 if acc_obj.transfer(to_username, amount):
                     print("Transaction successful")
                 else:

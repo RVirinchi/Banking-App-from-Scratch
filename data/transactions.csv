@@ -1,6 +1,8 @@
 from_username,to_username,amount,datetime
-paradox,paradox,100,
-paradox,paradox,-50,
-secondaccount,secondaccount,500,
-secondaccount,secondaccount,100,
-secondaccount,secondaccount,-300,
+firstuser,firstuser,1000.0,2025-11-07 18:09:41
+firstuser,firstuser,-250.0,2025-11-07 18:09:45
+seconduser,seconduser,1000.0,2025-11-07 18:10:25
+seconduser,seconduser,-850.0,2025-11-07 18:10:29
+seconduser,firstuser,100.0,2025-11-07 18:10:43
+firstuser,seconduser,500.0,2025-11-07 18:11:48
+seconduser,firstuser,1.0,2025-11-07 18:12:20
