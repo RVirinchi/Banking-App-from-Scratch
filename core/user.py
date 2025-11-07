@@ -4,11 +4,11 @@ import hashlib as hl
 
 class user:
     # instance variables
-    def __init__(self, username, password, name, email):
+    def __init__(self, username, password, name, mobile_no):
         self.username = username
         self.password_hash = self._hash_password(password)
         self.name = name
-        self.email = email
+        self.mobile_no = mobile_no
 
     @classmethod
     def _hash_password(cls, password):
