@@ -9,11 +9,6 @@ class auth:
     # users csv file path
     FILE = "data/users.csv" # forward slash works on windows too after recent updates !!!!
 
-    def __init__(self):
-        # create the csv if it doesnt already exist
-        if not os.path.exists(self.FILE):
-            pd.DataFrame(columns=['username', 'password_hash', 'name', 'mobile_no']).to_csv(self.FILE, index = False)
-
     def register(self, username, password, name, mobile_no):
         df = pd.read_csv(self.FILE)
         # check if username exists
@@ -26,7 +21,7 @@ class auth:
         df.to_csv(self.FILE, index = False)
 
         # create new account for the user in accounts
-        acc_obj = account(username, username.encode('utf-8'))
+        acc_obj = account(username, str(username.encode('utf-8').hex()))
         acc_obj.save_account()
 
         # registration successful

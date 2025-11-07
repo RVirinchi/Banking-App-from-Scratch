@@ -5,7 +5,7 @@ import pandas as pd
 
 class transaction:
     # file path
-    TRNSXN_FILE = 'data/transaction.csv'
+    TRNSXN_FILE = 'data/transactions.csv'
 
     # instance variable
     def __init__(self, from_username, to_username, amount):
