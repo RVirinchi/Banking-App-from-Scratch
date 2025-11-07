@@ -4,11 +4,23 @@ from core.user import user
 from core.auth import auth
 from core.account import account
 import pandas as pd
+import os
 
 USERS = 'data/users.csv'
+ACCOUNTS = 'data/accounts.csv'
+TRANSACTIONS = 'data/transactions.csv'
 
 
 def main():
+
+    # init all files (if they dont exsit)
+    if not os.path.exists(USERS):
+        pd.DataFrame(columns = ['username', 'password_hash', 'name', 'mobile_no'], index = False).to_csv(USERS) # type: ignore (supress warning of type error)
+    if not os.path.exists(ACCOUNTS):
+        pd.DataFrame(columns = ['username', 'acc_no', 'balance', 'acc_type'], index = False).to_csv(ACCOUNTS) # type: ignore (supress warning of type error)
+    if not os.path.exists(TRANSACTIONS):
+        pd.DataFrame(columns = ['from_username', 'to_username', 'amount', 'datetime'], index = False).to_csv(ACCOUNTS) # type: ignore (supress warning of type error)
+
     # this flag controlls when the program exits
     flag = True
 
@@ -39,7 +51,7 @@ def main():
             # existing user login
             case '2':
                 username = input("Enter ur username: ")
-                password = input("Enter a strong password: ")
+                password = input("Enter ur password: ")
                 if auth_obj.login(username, password):
                     print(f"Login successful, what do u wish to do today {username}")
                     post_login(account.load_account(username))
